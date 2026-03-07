@@ -42,7 +42,7 @@
 | `agents/shangshu/SOUL.md` | 更新为尚书省·派发、状态与回奏中心 |
 | `agents/libu_hr/SOUL.md` | 更新为吏部·行为画像与成长训练部 |
 | `agents/hubu/SOUL.md` | 更新为户部·资金、仓位与组合部 |
-| `agents/libu/SOUL.md` | 更新为礼部·流程、文书、定时任务与配额治理部 |
+| `agents/libu/SOUL.md` | 更新为礼部·流程、文书与简报部（定时任务与配额治理先保留设计，不要求在 MVP 阶段可用） |
 | `agents/bingbu/SOUL.md` | 更新为兵部·投资研究与计划部 |
 | `agents/xingbu/SOUL.md` | 更新为刑部·纪律、稽核与问责部 |
 | `agents/gongbu/SOUL.md` | 更新为工部·数据、回测、技术统计与自动化部 |
@@ -53,8 +53,8 @@
 | 文件 | 内容 |
 |------|------|
 | `agents/yushitai/SOUL.md` | 御史台·独立监察机构 |
-| `agents/huangchengsi/SOUL.md` | 皇城司·资讯中台（可选，MVP 可暂不实现） |
-| `agents/fagaiwei/SOUL.md` | 发改委·长期逻辑（可选，MVP 可暂不实现） |
+| `agents/huangchengsi/SOUL.md` | 皇城司·资讯中台（可先占位，MVP 可暂不实现功能） |
+| `agents/fagaiwei/SOUL.md` | 发改委·长期逻辑（可先占位，MVP 可暂不实现功能） |
 
 #### 1.3 修改 dashboard/server.py 的 _AGENT_DEPTS
 
@@ -130,6 +130,8 @@ _ORG_AGENT_MAP = {
 }
 ```
 
+**说明：** `_AGENT_DEPTS` 和 `_ORG_AGENT_MAP` 都属于少量注册类代码修改，不是框架级重写，但也不应再视为“纯配置”。
+
 ### 3. MVP 工作流验证
 
 确保以下工作流可以正常运行：
@@ -163,6 +165,6 @@ _ORG_AGENT_MAP = {
 - ❌ 皇城司（资讯中台）
 - ❌ 发改委（长期逻辑）
 - ❌ 国策库（延迟汇报机制）
-- ❌ 礼部的配额治理（需新增配置和逻辑）
-- ❌ 定时任务链（需新增 Cron 调度）
+- ❌ 礼部的配额治理（可先保留配置设计，但不要求 MVP 阶段真正可用）
+- ❌ 定时任务链（可先保留任务表 schema，但不要求 MVP 阶段真正可用）
 - ❌ 完整的模板文件（可以先在 SOUL.md 中描述格式）

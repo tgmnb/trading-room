@@ -92,7 +92,7 @@ backup_existing() {
 create_workspaces() {
   info "创建 Agent Workspace..."
   
-  AGENTS=(taizi zhongshu menxia shangshu hubu libu bingbu xingbu gongbu libu_hr zaochao)
+  AGENTS=(taizi zhongshu menxia shangshu hubu libu bingbu xingbu gongbu libu_hr zaochao yushitai)
   for agent in "${AGENTS[@]}"; do
     ws="$OC_HOME/workspace-$agent"
     mkdir -p "$ws/skills"
@@ -112,10 +112,29 @@ create_workspaces() {
     cat > "$OC_HOME/workspace-$agent/AGENTS.md" << 'AGENTS_EOF'
 # AGENTS.md · 工作协议
 
+## 投资版三省六部
+
 1. 接到任务先回复"已接旨"。
-2. 输出必须包含：任务ID、结果、证据/文件路径、阻塞项。
+2. 输出必须包含：任务ID、结果、证据/分析依据、阻塞项。
 3. 需要协作时，回复尚书省请求转派，不跨部直连。
-4. 涉及删除/外发动作必须明确标注并等待批准。
+4. 涉及交易决策必须附带证据等级(A/B/C)。
+5. 计划外操作需记录原因并上报御史台。
+
+## Agent职责定位
+
+| Agent | 核心职责 |
+|-------|----------|
+| 太子 | 任务分拣与立项 |
+| 中书省 | 规划与拆解 |
+| 门下省 | 审议与封驳 |
+| 尚书省 | 派发与汇总 |
+| 吏部 | 行为画像与Agent优化 |
+| 户部 | 仓位与风险管理 |
+| 礼部 | 盘前盘后与节律 |
+| 兵部 | 投资研究与机会排序 |
+| 刑部 | 执行监督与偏差归因 |
+| 工部 | 技术统计与回测 |
+| 御史台 | 独立监察与成长 |
 AGENTS_EOF
   done
 }
@@ -136,16 +155,17 @@ cfg = json.loads(cfg_path.read_text())
 
 AGENTS = [
   {"id": "taizi",    "subagents": {"allowAgents": ["zhongshu"]}},
-    {"id": "zhongshu", "subagents": {"allowAgents": ["menxia", "shangshu"]}},
-    {"id": "menxia",   "subagents": {"allowAgents": ["shangshu", "zhongshu"]}},
-  {"id": "shangshu", "subagents": {"allowAgents": ["zhongshu", "menxia", "hubu", "libu", "bingbu", "xingbu", "gongbu", "libu_hr"]}},
-    {"id": "hubu",     "subagents": {"allowAgents": ["shangshu"]}},
-    {"id": "libu",     "subagents": {"allowAgents": ["shangshu"]}},
-    {"id": "bingbu",   "subagents": {"allowAgents": ["shangshu"]}},
-    {"id": "xingbu",   "subagents": {"allowAgents": ["shangshu"]}},
-    {"id": "gongbu",   "subagents": {"allowAgents": ["shangshu"]}},
+  {"id": "zhongshu", "subagents": {"allowAgents": ["menxia", "shangshu"]}},
+  {"id": "menxia",   "subagents": {"allowAgents": ["shangshu", "zhongshu"]}},
+  {"id": "shangshu", "subagents": {"allowAgents": ["zhongshu", "menxia", "hubu", "libu", "bingbu", "xingbu", "gongbu", "libu_hr", "yushitai", "zaochao"]}},
+  {"id": "hubu",     "subagents": {"allowAgents": ["shangshu"]}},
+  {"id": "libu",     "subagents": {"allowAgents": ["shangshu"]}},
+  {"id": "bingbu",   "subagents": {"allowAgents": ["shangshu"]}},
+  {"id": "xingbu",   "subagents": {"allowAgents": ["shangshu"]}},
+  {"id": "gongbu",   "subagents": {"allowAgents": ["shangshu"]}},
   {"id": "libu_hr",  "subagents": {"allowAgents": ["shangshu"]}},
   {"id": "zaochao",  "subagents": {"allowAgents": []}},
+  {"id": "yushitai", "subagents": {"allowAgents": []}},
 ]
 
 agents_cfg = cfg.setdefault('agents', {})
