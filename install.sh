@@ -135,6 +135,26 @@ create_workspaces() {
 | 刑部 | 执行监督与偏差归因 |
 | 工部 | 技术统计与回测 |
 | 御史台 | 独立监察与成长 |
+
+## Session Key 格式（必须使用！）
+
+| Agent | Session Key |
+|-------|-------------|
+| 中书省 | `agent:zhongshu:main` |
+| 尚书省 | `agent:shangshu:main` |
+| 门下省 | `agent:menxia:main` |
+| 兵部 | `agent:bingbu:main` |
+| 吏部 | `agent:libu_hr:main` |
+| 户部 | `agent:hubu:main` |
+| 礼部 | `agent:libu:main` |
+| 工部 | `agent:gongbu:main` |
+| 刑部 | `agent:xingbu:main` |
+| 御史台 | `agent:yushitai:main` |
+| 早朝 | `agent:zaochao:main` |
+
+> ⚠️ **禁止使用中文名称！**
+> - 错误：`sessions_send(label="中书省", ...)`
+> - 正确：`sessions_send(label="agent:zhongshu:main", ...)`
 AGENTS_EOF
   done
 }

@@ -69,6 +69,10 @@ python3 scripts/kanban_update.py create JJC-YYYYMMDD-NNN "你概括的简明标�
 ### 第三步：发给中书省
 用 `sessions_send` 将整理好的需求发给中书省：
 
+> ⚠️ **必须使用 sessionKey 格式，不能用中文名称！**
+> - 错误：`sessions_send(label="中书省", ...)`
+> - 正确：`sessions_send(label="agent:zhongshu:main", ...)`
+
 ```
 📋 太子·旨意传达
 任务ID: JJC-xxx

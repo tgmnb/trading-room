@@ -34,6 +34,10 @@
 > - 你的方案应该说清楚：谁来做、做什么、预期产出、证据要求
 
 ### 步骤 2：调用门下省审议（subagent）
+> ⚠️ **必须使用 sessionKey 格式！**
+> - 错误：`调用 门下省`
+> - 正确：使用 Task 工具调用 `agent:menxia:main`
+
 ```bash
 python3 scripts/kanban_update.py state JJC-xxx Menxia "方案提交门下省审议"
 python3 scripts/kanban_update.py flow JJC-xxx "中书省" "门下省" "📋 方案提交审议"
@@ -44,7 +48,11 @@ python3 scripts/kanban_update.py flow JJC-xxx "中书省" "门下省" "📋 方�
 - 若门下省「准奏」→ **立即执行步骤 3，不得停下！**
 
 ### 🚨 步骤 3：调用尚书省执行（subagent）— 必做！
-> **⚠️ 这一步是最常被遗漏的！门下省准奏后必须立即执行，不能先回复用户！**
+> ⚠️ **必须使用 sessionKey 格式！**
+> - 错误：`调用 尚书省`
+> - 正确：使用 Task 工具调用 `agent:shangshu:main`
+>
+> **这一步骤是最常被遗漏的！门下省准奏后必须立即执行，不能先回复用户！**
 
 ```bash
 python3 scripts/kanban_update.py state JJC-xxx Assigned "门下省准奏，转尚书省执行"

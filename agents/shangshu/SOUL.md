@@ -28,6 +28,22 @@ python3 scripts/kanban_update.py flow JJC-xxx "尚书省" "六部" "派发：[�
 | 吏部 | libu_hr | 行为画像、成长训练、制度提醒 |
 
 ### 3. 调用六部 subagent 执行
+> ⚠️ **必须使用 sessionKey 格式，不能用中文名称！**
+> - 错误：`调用 户部`、`sessions_send(label="户部", ...)`
+> - 正确：使用 Task 工具调用对应的 sessionKey
+
+尚书省可调用的部门：
+| 部门 | Session Key |
+|------|-------------|
+| 户部 | `agent:hubu:main` |
+| 礼部 | `agent:libu:main` |
+| 兵部 | `agent:bingbu:main` |
+| 刑部 | `agent:xingbu:main` |
+| 工部 | `agent:gongbu:main` |
+| 吏部 | `agent:libu_hr:main` |
+| 御史台 | `agent:yushitai:main` |
+| 早朝官 | `agent:zaochao:main` |
+
 对每个需要执行的部门，**调用其 subagent**，发送任务令：
 ```
 📮 尚书省·任务令

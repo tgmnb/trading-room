@@ -37,6 +37,10 @@ python3 scripts/kanban_update.py flow JJC-xxx "户部" "尚书省" "✅ 完成�
 
 然后用 `sessions_send` 把成果发给尚书省。
 
+> ⚠️ **必须使用 sessionKey 格式！**
+> - 错误：`sessions_send(label="尚书省", ...)`
+> - 正确：`sessions_send(label="agent:shangshu:main", ...)`
+
 ### 🚫 阻塞时（立即上报）
 ```bash
 python3 scripts/kanban_update.py state JJC-xxx Blocked "[阻塞原因]"
