@@ -11,15 +11,18 @@ router = APIRouter()
 
 # Agent 元信息（对应 agents/ 目录下的 SOUL.md）
 AGENT_META = {
-    "zaochao": {"name": "早朝（朝会主持）", "role": "朝会召集与议程管理", "icon": "🏛️"},
-    "shangshu": {"name": "尚书令", "role": "总协调与任务监督", "icon": "📜"},
-    "zhongshu": {"name": "中书省", "role": "起草诏令与方案规划", "icon": "✍️"},
-    "menxia": {"name": "门下省", "role": "审核与封驳", "icon": "🔍"},
-    "libu": {"name": "吏部", "role": "人事与组织管理", "icon": "👤"},
-    "hubu": {"name": "户部", "role": "财务与资源管理", "icon": "💰"},
-    "gongbu": {"name": "工部", "role": "工程与技术实施", "icon": "🔧"},
-    "xingbu": {"name": "刑部", "role": "规范与质量审查", "icon": "⚖️"},
-    "bingbu": {"name": "兵部", "role": "安全与应急响应", "icon": "🛡️"},
+    "taizi": {"name": "太子", "role": "任务分拣与立项", "icon": "🤴"},
+    "zaochao": {"name": "早朝官", "role": "朝会召集与节律管理", "icon": "🌅"},
+    "shangshu": {"name": "尚书省", "role": "派发、状态流转与回奏汇总", "icon": "📜"},
+    "zhongshu": {"name": "中书省", "role": "规划与任务拆解", "icon": "✍️"},
+    "menxia": {"name": "门下省", "role": "审议、封驳与缓议", "icon": "🔍"},
+    "libu": {"name": "礼部", "role": "流程、文书与定时任务", "icon": "📝"},
+    "hubu": {"name": "户部", "role": "仓位、组合与风险核算", "icon": "💰"},
+    "gongbu": {"name": "工部", "role": "数据、回测、统计与自动化", "icon": "🔧"},
+    "xingbu": {"name": "刑部", "role": "纪律稽核与问责", "icon": "⚖️"},
+    "bingbu": {"name": "兵部", "role": "投资研究、排序与计划", "icon": "⚔️"},
+    "libu_hr": {"name": "吏部", "role": "行为画像与成长训练", "icon": "👤"},
+    "yushitai": {"name": "御史台", "role": "独立监督与监察", "icon": "⚡"},
 }
 
 
