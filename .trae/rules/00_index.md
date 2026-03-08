@@ -6,9 +6,9 @@
 
 | 文件 | 内容 |
 |------|------|
-| [01_architecture.md](01_architecture.md) | 项目架构规范 - 太子+三省六部+早朝官+御史台+专项机构架构、目录结构、系统分层 |
+| [01_architecture.md](01_architecture.md) | 项目架构规范 - 太子+三省六部+早朝官+御史台+专项机构+大内总管架构、目录结构、系统分层 |
 | [02_code_style.md](02_code_style.md) | 代码风格指南 - Python/TypeScript 规范、文件命名 |
-| [03_agent_definitions.md](03_agent_definitions.md) | Agent 功能定义 - 所有核心 Agent 详细职责（太子/三省/六部/早朝官/御史台/专项机构） |
+| [03_agent_definitions.md](03_agent_definitions.md) | Agent 功能定义 - 所有核心 Agent 详细职责（大内总管/太子/三省/六部/早朝官/御史台/专项机构） |
 | [04_trigger_conditions.md](04_trigger_conditions.md) | Agent 触发条件 - 任务流转（标准即时/国策议题/定时）、特殊触发、流程触发规则、关键制度铁律触发 |
 | [05_communication_protocol.md](05_communication_protocol.md) | 通信协议 - JSON格式、消息类型、优先级、状态机定义 |
 | [06_exception_handling.md](06_exception_handling.md) | 异常处理 - Agent/流程/数据异常处理 |
@@ -18,6 +18,7 @@
 ## 快速查找
 
 ### Agent 定义
+- 大内总管 → [03_agent_definitions.md](03_agent_definitions.md#30-大内总管-agent)
 - 太子 → [03_agent_definitions.md](03_agent_definitions.md#31-太子-agent)
 - 中书省 → [03_agent_definitions.md](03_agent_definitions.md#32-中书省-agent)
 - 门下省 → [03_agent_definitions.md](03_agent_definitions.md#33-门下省-agent)

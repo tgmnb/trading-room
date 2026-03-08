@@ -484,14 +484,14 @@ def _compute_checksum(content: str) -> str:
     return hashlib.sha256(content.encode()).hexdigest()[:16]
 
 
-def push_to_feishu():
-    """Push morning brief link to Feishu via webhook."""
+def push_to_discord():
+    """Push morning brief link to Discord via webhook."""
     cfg = read_json(DATA / 'morning_brief_config.json', {})
-    webhook = cfg.get('feishu_webhook', '').strip()
+    webhook = cfg.get('discord_webhook', '').strip()
     if not webhook:
         return
-    if not validate_url(webhook, allowed_schemes=('https',), allowed_domains=('open.feishu.cn', 'open.larksuite.com')):
-        log.warning(f'飞书 Webhook URL 不合法: {webhook}')
+    if not validate_url(webhook, allowed_schemes=('https',)):
+        log.warning(f'Discord Webhook URL 不合法: {webhook}')
         return
     brief = read_json(DATA / 'morning_brief.json', {})
     date_str = brief.get('date', '')
@@ -505,22 +505,37 @@ def push_to_feishu():
     summary = '\n'.join(cat_lines)
     date_fmt = date_str[:4] + '年' + date_str[4:6] + '月' + date_str[6:] + '日' if len(date_str) == 8 else date_str
     payload = json.dumps({
-        'msg_type': 'interactive',
-        'card': {
-            'header': {'title': {'tag': 'plain_text', 'content': f'📰 天下要闻 · {date_fmt}'}, 'template': 'blue'},
-            'elements': [
-                {'tag': 'div', 'text': {'tag': 'lark_md', 'content': f'共 **{total}** 条要闻已更新\n{summary}'}},
-                {'tag': 'action', 'actions': [{'tag': 'button', 'text': {'tag': 'plain_text', 'content': '🔗 查看完整简报'}, 'url': 'http://127.0.0.1:7891', 'type': 'primary'}]},
-                {'tag': 'note', 'elements': [{'tag': 'plain_text', 'content': f"采集于 {brief.get('generated_at', '')}"}]}
-            ]
-        }
+        'embeds': [
+            {
+                'title': f'📰 天下要闻 · {date_fmt}',
+                'description': f'共 **{total}** 条要闻已更新\n```\n{summary}\n```',
+                'color': 3447003,
+                'url': 'http://127.0.0.1:7891',
+                'footer': {
+                    'text': f"采集于 {brief.get('generated_at', '')}"
+                }
+            }
+        ],
+        'components': [
+            {
+                'type': 1,
+                'components': [
+                    {
+                        'type': 2,
+                        'label': '🔗 查看完整简报',
+                        'style': 5,
+                        'url': 'http://127.0.0.1:7891'
+                    }
+                ]
+            }
+        ]
     }).encode()
     try:
         req = Request(webhook, data=payload, headers={'Content-Type': 'application/json'})
         resp = urlopen(req, timeout=10)
-        print(f'[飞书] 推送成功 ({resp.status})')
+        print(f'[Discord] 推送成功 ({resp.status})')
     except Exception as e:
-        print(f'[飞书] 推送失败: {e}', file=sys.stderr)
+        print(f'[Discord] 推送失败: {e}', file=sys.stderr)
 
 
 # 旨意标题最低要求
@@ -655,6 +670,7 @@ def handle_review_action(task_id, action, comment=''):
 # ══ Agent 在线状态检测 ══
 
 _AGENT_DEPTS = [
+    {'id':'danei',    'label':'大内总管','emoji':'🏯', 'role':'皇帝授权执行官', 'rank':'超品'},
     {'id':'taizi',   'label':'太子',  'emoji':'🤴', 'role':'太子',     'rank':'储君'},
     {'id':'zhongshu','label':'中书省','emoji':'📜', 'role':'中书令',   'rank':'正一品'},
     {'id':'menxia',  'label':'门下省','emoji':'🔍', 'role':'侍中',     'rank':'正一品'},
@@ -871,6 +887,7 @@ _STATE_AGENT_MAP = {
     'Pending': 'zhongshu', # 待处理，默认中书省
 }
 _ORG_AGENT_MAP = {
+    '大内总管': 'danei',
     '礼部': 'libu', '户部': 'hubu', '兵部': 'bingbu',
     '刑部': 'xingbu', '工部': 'gongbu', '吏部': 'libu_hr',
     '中书省': 'zhongshu', '门下省': 'menxia', '尚书省': 'shangshu',
@@ -1959,7 +1976,7 @@ def dispatch_for_state(task_id, task, new_state, trigger='state-transition'):
                 }))
                 return
             cmd = ['openclaw', 'agent', '--agent', agent_id, '-m', msg,
-                   '--deliver', '--channel', 'feishu', '--timeout', '300']
+                   '--deliver', '--channel', 'discord', '--timeout', '300']
             max_retries = 2
             err = ''
             for attempt in range(1, max_retries + 1):
@@ -2150,7 +2167,7 @@ class Handler(BaseHTTPRequestHandler):
                     {'name': '经济', 'enabled': True},
                     {'name': 'AI大模型', 'enabled': True},
                 ],
-                'keywords': [], 'custom_feeds': [], 'feishu_webhook': '',
+                'keywords': [], 'custom_feeds': [], 'discord_webhook': '',
             }))
         elif p.startswith('/api/morning-brief/'):
             date = p.split('/')[-1]
@@ -2218,7 +2235,7 @@ class Handler(BaseHTTPRequestHandler):
             if not isinstance(body, dict):
                 self.send_json({'ok': False, 'error': '请求体必须是 JSON 对象'}, 400)
                 return
-            allowed_keys = {'categories', 'keywords', 'custom_feeds', 'feishu_webhook'}
+            allowed_keys = {'categories', 'keywords', 'custom_feeds', 'discord_webhook'}
             unknown = set(body.keys()) - allowed_keys
             if unknown:
                 self.send_json({'ok': False, 'error': f'未知字段: {", ".join(unknown)}'}, 400)
@@ -2229,10 +2246,10 @@ class Handler(BaseHTTPRequestHandler):
             if 'keywords' in body and not isinstance(body['keywords'], list):
                 self.send_json({'ok': False, 'error': 'keywords 必须是数组'}, 400)
                 return
-            # 飞书 Webhook 校验
-            webhook = body.get('feishu_webhook', '').strip()
-            if webhook and not validate_url(webhook, allowed_schemes=('https',), allowed_domains=('open.feishu.cn', 'open.larksuite.com')):
-                self.send_json({'ok': False, 'error': '飞书 Webhook URL 无效，仅支持 https://open.feishu.cn 或 open.larksuite.com 域名'}, 400)
+            # Discord Webhook 校验
+            webhook = body.get('discord_webhook', '').strip()
+            if webhook and not validate_url(webhook, allowed_schemes=('https',)):
+                self.send_json({'ok': False, 'error': 'Discord Webhook URL 无效'}, 400)
                 return
             cfg_path = DATA / 'morning_brief_config.json'
             cfg_path.write_text(json.dumps(body, ensure_ascii=False, indent=2))
@@ -2290,7 +2307,7 @@ class Handler(BaseHTTPRequestHandler):
                     if force:
                         cmd.append('--force')
                     subprocess.run(cmd, timeout=120)
-                    push_to_feishu()
+                    push_to_discord()
                 except Exception as e:
                     print(f'[refresh error] {e}', file=sys.stderr)
             threading.Thread(target=do_refresh, daemon=True).start()

@@ -274,7 +274,7 @@ export interface SubConfig {
   categories: SubCategoryConfig[];
   keywords: string[];
   custom_feeds: CustomFeed[];
-  feishu_webhook: string;
+  discord_webhook: string;
 }
 
 export interface ActivityEntry {

@@ -92,13 +92,12 @@ backup_existing() {
 create_workspaces() {
   info "创建 Agent Workspace..."
   
-  AGENTS=(taizi zhongshu menxia shangshu hubu libu bingbu xingbu gongbu libu_hr zaochao yushitai)
+  AGENTS=(danei taizi zhongshu menxia shangshu hubu libu bingbu xingbu gongbu libu_hr zaochao yushitai)
   for agent in "${AGENTS[@]}"; do
     ws="$OC_HOME/workspace-$agent"
     mkdir -p "$ws/skills"
     if [ -f "$REPO_DIR/agents/$agent/SOUL.md" ]; then
       if [ -f "$ws/SOUL.md" ]; then
-        # 已存在的 SOUL.md，先备份再覆盖
         cp "$ws/SOUL.md" "$ws/SOUL.md.bak.$(date +%Y%m%d-%H%M%S)"
         warn "已备份旧 SOUL.md → $ws/SOUL.md.bak.*"
       fi
@@ -124,6 +123,7 @@ create_workspaces() {
 
 | Agent | 核心职责 |
 |-------|----------|
+| 大内总管 | 皇帝授权时执行系统操作 |
 | 太子 | 任务分拣与立项 |
 | 中书省 | 规划与拆解 |
 | 门下省 | 审议与封驳 |
@@ -140,6 +140,7 @@ create_workspaces() {
 
 | Agent | Session Key |
 |-------|-------------|
+| 大内总管 | `agent:danei:main` |
 | 中书省 | `agent:zhongshu:main` |
 | 尚书省 | `agent:shangshu:main` |
 | 门下省 | `agent:menxia:main` |
@@ -174,16 +175,17 @@ cfg_path = pathlib.Path.home() / '.openclaw' / 'openclaw.json'
 cfg = json.loads(cfg_path.read_text())
 
 AGENTS = [
+  {"id": "danei",    "subagents": {"allowAgents": []}},
   {"id": "taizi",    "subagents": {"allowAgents": ["zhongshu"]}},
   {"id": "zhongshu", "subagents": {"allowAgents": ["menxia", "shangshu"]}},
   {"id": "menxia",   "subagents": {"allowAgents": ["shangshu", "zhongshu"]}},
   {"id": "shangshu", "subagents": {"allowAgents": ["zhongshu", "menxia", "hubu", "libu", "bingbu", "xingbu", "gongbu", "libu_hr", "yushitai", "zaochao"]}},
   {"id": "hubu",     "subagents": {"allowAgents": ["shangshu"]}},
   {"id": "libu",     "subagents": {"allowAgents": ["shangshu"]}},
+  {"id": "libu_hr",  "subagents": {"allowAgents": ["shangshu"]}},
   {"id": "bingbu",   "subagents": {"allowAgents": ["shangshu"]}},
   {"id": "xingbu",   "subagents": {"allowAgents": ["shangshu"]}},
   {"id": "gongbu",   "subagents": {"allowAgents": ["shangshu"]}},
-  {"id": "libu_hr",  "subagents": {"allowAgents": ["shangshu"]}},
   {"id": "zaochao",  "subagents": {"allowAgents": []}},
   {"id": "yushitai", "subagents": {"allowAgents": []}},
 ]

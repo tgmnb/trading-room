@@ -75,6 +75,18 @@
   ],
   "agents": [
     {
+      "id": "danei",
+      "label": "大内总管",
+      "role": "皇帝授权执行官",
+      "duty": "皇帝授权时执行系统操作",
+      "emoji": "🏯",
+      "model": "anthropic/claude-sonnet-4-6",
+      "defaultModel": "anthropic/claude-sonnet-4-6",
+      "workspace": "/Users/bingsen/.openclaw/workspace-danei",
+      "skills": [],
+      "allowAgents": []
+    },
+    {
       "id": "shangshu",
       "label": "尚书省",
       "role": "尚书令",

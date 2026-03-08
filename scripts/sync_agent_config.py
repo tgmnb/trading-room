@@ -15,8 +15,9 @@ DATA = BASE / 'data'
 OPENCLAW_CFG = pathlib.Path.home() / '.openclaw' / 'openclaw.json'
 
 ID_LABEL = {
-    'taizi':    {'label': '太子',   'role': '太子',     'duty': '飞书消息分拣与回奏',  'emoji': '🤴'},
-    'main':     {'label': '太子',   'role': '太子',     'duty': '飞书消息分拣与回奏',  'emoji': '🤴'},  # 兼容旧配置
+    'danei':    {'label': '大内总管', 'role': '皇帝授权执行官', 'duty': '皇帝授权时执行系统操作', 'emoji': '🏯'},
+    'taizi':    {'label': '太子',   'role': '太子',     'duty': 'Discord消息分拣与回奏',  'emoji': '🤴'},
+    'main':     {'label': '太子',   'role': '太子',     'duty': 'Discord消息分拣与回奏',  'emoji': '🤴'},  # 兼容旧配置
     'zhongshu': {'label': '中书省', 'role': '中书令',   'duty': '起草任务令与优先级',  'emoji': '📜'},
     'menxia':   {'label': '门下省', 'role': '侍中',     'duty': '审议与退回机制',      'emoji': '🔍'},
     'shangshu': {'label': '尚书省', 'role': '尚书令',   'duty': '派单与升级裁决',      'emoji': '📮'},
@@ -112,6 +113,8 @@ def main():
 
     # 补充不在 openclaw.json agents list 中的 agent（兼容旧版 main）
     EXTRA_AGENTS = {
+        'danei':   {'model': default_model, 'workspace': str(pathlib.Path.home() / '.openclaw/workspace-danei'),
+                    'allowAgents': [taizi]},
         'taizi':   {'model': default_model, 'workspace': str(pathlib.Path.home() / '.openclaw/workspace-taizi'),
                     'allowAgents': ['zhongshu']},
         'main':    {'model': default_model, 'workspace': str(pathlib.Path.home() / '.openclaw/workspace-main'),
@@ -154,6 +157,7 @@ def main():
 
 # 项目 agents/ 目录名 → 运行时 agent_id 映射
 _SOUL_DEPLOY_MAP = {
+    'danei': 'danei',
     'taizi': 'taizi',
     'zhongshu': 'zhongshu',
     'menxia': 'menxia',

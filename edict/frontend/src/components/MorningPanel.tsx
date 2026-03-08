@@ -192,7 +192,7 @@ export default function MorningPanel() {
           onAddFeed={addFeed}
           onRemoveFeed={removeFeed}
           onSave={saveConfig}
-          onSetWebhook={(v) => setLocalConfig({ ...localConfig, feishu_webhook: v })}
+          onSetWebhook={(v) => setLocalConfig({ ...localConfig, discord_webhook: v })}
         />
       )}
 
@@ -396,14 +396,14 @@ function SubConfigPanel({
         </div>
       </div>
 
-      {/* Feishu Webhook */}
+      {/* Discord Webhook */}
       <div style={{ marginBottom: 14 }}>
-        <div style={{ fontSize: 12, fontWeight: 600, marginBottom: 6 }}>飞书 Webhook</div>
+        <div style={{ fontSize: 12, fontWeight: 600, marginBottom: 6 }}>Discord Webhook</div>
         <input
           type="text"
-          value={config.feishu_webhook || ''}
+          value={config.discord_webhook || ''}
           onChange={(e) => onSetWebhook(e.target.value)}
-          placeholder="https://open.feishu.cn/open-apis/bot/v2/hook/..."
+          placeholder="https://discord.com/api/webhooks/..."
           style={{ width: '100%', padding: '8px 10px', background: 'var(--bg)', border: '1px solid var(--line)', borderRadius: 6, color: 'var(--text)', fontSize: 12, outline: 'none' }}
         />
       </div>
