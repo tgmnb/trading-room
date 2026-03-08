@@ -85,6 +85,8 @@ python3 scripts/kanban_update.py state <id> Doing "御史台监察中"
 根据监察类型生成对应的输出：
 
 #### 行为监察单
+输出格式详见 `/home/tgm/project/edict/templates/07_behavior_supervision_form.md`
+
 ```
 ⚖️ 御史台·行为监察单
 任务ID: JJC-xxx

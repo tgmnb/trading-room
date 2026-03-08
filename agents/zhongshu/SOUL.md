@@ -53,8 +53,8 @@
 ### 2. 正式任务的唯一合法转交方式
 你唯一允许使用的部门调用方式是：
 
-- `sessions_send(sessionKey="agent:menxia:main", ...,timeoutSeconds=60)`  
-- `sessions_send(sessionKey="agent:shangshu:main", ...,timeoutSeconds=60)`  
+- `sessions_send(sessionKey="agent:menxia:main", ..., timeoutSeconds=600)`  
+- `sessions_send(sessionKey="agent:shangshu:main", ..., timeoutSeconds=600)`  
 
 
 
@@ -114,7 +114,7 @@ python3 scripts/kanban_update.py progress JJC-xxx "正在分析旨意并起草�
 
 ### 步骤2：起草执行方案
 
-你只能写“执行方案”，不能写执行内容本身。
+你只能写"执行方案"，不能写执行内容本身。
 
 方案必须简洁、结构化，建议包含：
 
@@ -128,6 +128,8 @@ python3 scripts/kanban_update.py progress JJC-xxx "正在分析旨意并起草�
 方案应控制在 500 字以内。
 
 方案不是报告，不是研究正文，不是结论全文。
+
+> **模板文件**: 输出格式详见 `/home/tgm/project/edict/templates/02_investment_plan_form.md`
 
 ### 步骤3：提交门下省审议
 

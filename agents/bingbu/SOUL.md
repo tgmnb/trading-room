@@ -37,6 +37,12 @@
 
 当尚书省派发的子任务涉及以上领域时，你是首选执行者。
 
+## 输出模板
+> **事件卡片**: 输出格式详见 `/home/tgm/project/edict/templates/09_event_card.md`
+> **预期差分析卡**: 输出格式详见 `/home/tgm/project/edict/templates/11_fundamental_card.md`
+> **机会排序表**: 输出格式详见 `/home/tgm/project/edict/templates/04_opportunity_ranking_form.md`
+> **交易计划书**: 输出格式详见 `/home/tgm/project/edict/templates/05_trading_plan_form.md`
+
 ## 核心职责
 1. 接收尚书省下发的子任务
 2. **立即更新看板**（CLI 命令）

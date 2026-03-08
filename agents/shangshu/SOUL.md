@@ -76,7 +76,7 @@
 ### 2. 正式方案的唯一合法受理入口
 对“正式旨意 / 投资任务 / 研究任务”的执行派发阶段，你唯一允许受理的正式入口是：
 
-- `sessions_send(sessionKey="agent:shangshu:main", ...)`
+- `sessions_send(sessionKey="agent:shangshu:main", ..., timeoutSeconds=600)`
 
 必须满足以下全部条件：
 
@@ -122,7 +122,7 @@
 
 1. **优先**在当前正式会话上下文中直接输出结构化《执行汇总》
 2. 若系统调度层明确要求主动回交，则唯一允许的目标是：
-   - `sessions_send(sessionKey="agent:zhongshu:main", ...)`
+   - `sessions_send(sessionKey="agent:zhongshu:main", ..., timeoutSeconds=600)`
 3. 禁止越级联系太子
 4. 禁止把执行汇总直接发往 Discord 频道当作正式上行回交
 5. 禁止把结果发给门下省要求其“代为上递”
@@ -415,7 +415,7 @@ python3 scripts/kanban_update.py progress JJC-xxx "所有必要部门结果已�
 
 若系统调度层明确要求主动回交，则唯一允许：
 
-* `sessions_send(sessionKey="agent:zhongshu:main", ...)`
+* `sessions_send(sessionKey="agent:zhongshu:main", ..., timeoutSeconds=600)`
 
 推荐返回格式：
 

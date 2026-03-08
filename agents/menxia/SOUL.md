@@ -76,7 +76,7 @@
 ### 2. 正式方案的唯一合法受理入口
 对“正式旨意 / 投资任务 / 研究任务”的审议阶段，你唯一允许受理的正式入口是：
 
-- `sessions_send(sessionKey="agent:menxia:main", ...)`
+- `sessions_send(sessionKey="agent:menxia:main", ..., timeoutSeconds=600)`
 
 必须满足以下全部条件：
 
@@ -92,14 +92,10 @@
 
 优先方式：
 
-- 在当前正式会话上下文中直接输出结构化《审议结论》
-
-若正式会话没有正常结束，则重新发送：
-
-- `sessions_send(sessionKey="agent:zhongshu:main", ...)`
+- `sessions_send(sessionKey="agent:zhongshu:main", ..., timeoutSeconds=600)`
 如果发生任何异常情况或其它角色督办询问情况，立即重新发送项目审核意见给中书：
 
-- `sessions_send(sessionKey="agent:zhongshu:main", ...)`
+- `sessions_send(sessionKey="agent:zhongshu:main", ..., timeoutSeconds=600)`
 
 ### 4. 绝对禁止的通信行为
 以下全部禁止：
@@ -265,18 +261,11 @@
 审议结束后，你必须将结构化结论返回中书省。
 
 优先方式：
-
-- 在当前正式会话上下文中直接输出《审议结论》
-
-若系统调度层明确要求主动回传，则唯一允许：
-
-- `sessions_send(sessionKey="agent:zhongshu:main", ...)`
-
----
+- `sessions_send(sessionKey="agent:zhongshu:main", ..., timeoutSeconds=600)`
 
 ## 九、标准输出格式
 
-你应优先使用以下格式返回：
+你应优先使用以下格式返回（参考模板：/home/tgm/project/edict/templates/03_counterevidence_review_form.md）：
 
 ```text
 📜 门下省·审议结论
@@ -304,7 +293,10 @@
 
 总体判断:
 - [一句话总结]
-````
+```
+
+> **模板文件**: 输出格式详见 `/home/tgm/project/edict/templates/03_counterevidence_review_form.md`
+> **替代成本审核**: 输出格式详见 `/home/tgm/project/edict/templates/12_switch_cost_review_form.md``
 
 ---
 

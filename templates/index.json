@@ -1,0 +1,128 @@
+{
+  "templates": {
+    "project_intake_form": {
+      "template_id": "project_intake_form",
+      "name": "立项分拣单",
+      "file": "01_project_intake_form.md",
+      "agent": "taizi",
+      "agent_name": "太子",
+      "priority": "P0",
+      "description": "太子用于任务分拣与立项的模板"
+    },
+    "investment_plan_form": {
+      "template_id": "investment_plan_form",
+      "name": "投资旨意规划书",
+      "file": "02_investment_plan_form.md",
+      "agent": "zhongshu",
+      "agent_name": "中书省",
+      "priority": "P0",
+      "description": "中书省用于规划与拆解任务的模板"
+    },
+    "counterevidence_review_form": {
+      "template_id": "counterevidence_review_form",
+      "name": "反证审查单",
+      "file": "03_counterevidence_review_form.md",
+      "agent": "menxia",
+      "agent_name": "门下省",
+      "priority": "P1",
+      "description": "门下省用于反证审查的模板"
+    },
+    "opportunity_ranking_form": {
+      "template_id": "opportunity_ranking_form",
+      "name": "机会排序表",
+      "file": "04_opportunity_ranking_form.md",
+      "agent": "bingbu",
+      "agent_name": "兵部",
+      "priority": "P1",
+      "description": "兵部用于机会排序的模板"
+    },
+    "trading_plan_form": {
+      "template_id": "trading_plan_form",
+      "name": "交易计划书",
+      "file": "05_trading_plan_form.md",
+      "agent": "bingbu",
+      "agent_name": "兵部",
+      "priority": "P0",
+      "description": "兵部用于制定交易计划的模板"
+    },
+    "execution_deviation_form": {
+      "template_id": "execution_deviation_form",
+      "name": "执行偏差记录单",
+      "file": "06_execution_deviation_form.md",
+      "agent": "xingbu",
+      "agent_name": "刑部",
+      "priority": "P1",
+      "description": "刑部用于记录执行偏差的模板"
+    },
+    "behavior_supervision_form": {
+      "template_id": "behavior_supervision_form",
+      "name": "行为监察单",
+      "file": "07_behavior_supervision_form.md",
+      "agent": "yushitai",
+      "agent_name": "御史台",
+      "priority": "P1",
+      "description": "御史台用于行为监察的模板"
+    },
+    "court_meeting_minutes": {
+      "template_id": "court_meeting_minutes",
+      "name": "朝会纪要",
+      "file": "08_court_meeting_minutes.md",
+      "agent": "zaochao",
+      "agent_name": "早朝官",
+      "priority": "P1",
+      "description": "早朝官用于记录朝会纪要的模板"
+    },
+    "event_card": {
+      "template_id": "event_card",
+      "name": "事件卡片",
+      "file": "09_event_card.md",
+      "agent": "bingbu",
+      "agent_name": "兵部",
+      "priority": "P2",
+      "description": "兵部用于记录事件的模板"
+    },
+    "technical_card": {
+      "template_id": "technical_card",
+      "name": "技术统计卡",
+      "file": "10_technical_card.md",
+      "agent": "gongbu",
+      "agent_name": "工部",
+      "priority": "P2",
+      "description": "工部用于技术统计的模板"
+    },
+    "fundamental_card": {
+      "template_id": "fundamental_card",
+      "name": "预期差分析卡",
+      "file": "11_fundamental_card.md",
+      "agent": "bingbu",
+      "agent_name": "兵部",
+      "priority": "P2",
+      "description": "兵部用于预期差分析的模板"
+    },
+    "switch_cost_review_form": {
+      "template_id": "switch_cost_review_form",
+      "name": "替代成本审核单",
+      "file": "12_switch_cost_review_form.md",
+      "agent": "menxia",
+      "agent_name": "门下省",
+      "priority": "P1",
+      "description": "门下省用于替代成本审核的模板"
+    }
+  },
+  "agent_templates": {
+    "taizi": ["project_intake_form"],
+    "zhongshu": ["investment_plan_form"],
+    "menxia": ["counterevidence_review_form", "switch_cost_review_form"],
+    "shangshu": [],
+    "libu_hr": [],
+    "hubu": [],
+    "libu": [],
+    "bingbu": ["opportunity_ranking_form", "trading_plan_form", "event_card", "fundamental_card"],
+    "xingbu": ["execution_deviation_form"],
+    "gongbu": ["technical_card"],
+    "zaochao": ["court_meeting_minutes"],
+    "yushitai": ["behavior_supervision_form"],
+    "huangchengsi": [],
+    "fagaiwei": []
+  }
+}

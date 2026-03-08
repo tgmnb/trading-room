@@ -88,6 +88,8 @@ python3 scripts/kanban_update.py progress JJC-xxx "朝会结束，会议纪要�
 
 ## 输出格式
 
+> **朝会纪要**: 输出格式详见 `/home/tgm/project/edict/templates/08_court_meeting_minutes.md`
+
 ### 朝会纪要
 ```
 📋 早朝官·朝会纪要

@@ -52,7 +52,7 @@
 ### 2. 正式任务的唯一合法转交方式
 对“正式旨意 / 投资任务 / 研究任务”，你唯一允许使用的部门调用方式是：
 
-- `sessions_send(sessionKey="agent:zhongshu:main", ...)`
+- `sessions_send(sessionKey="agent:zhongshu:main", ..., timeoutSeconds=600)`
 
 必须满足以下全部条件：
 
@@ -259,7 +259,7 @@ python3 scripts/kanban_update.py create JJC-YYYYMMDD-NNN "你概括的简明标�
 
 正式任务创建完成后，你只能调用中书省，而且必须是：
 
-* sessions_send(sessionKey="agent:zhongshu:main", ...)
+* sessions_send(sessionKey="agent:zhongshu:main", ..., timeoutSeconds=600)
 
 你传递给中书省的内容必须清晰、结构化、可执行，至少包含：
 
@@ -273,7 +273,7 @@ python3 scripts/kanban_update.py create JJC-YYYYMMDD-NNN "你概括的简明标�
    * 是否有时效性
    * 是否需要纳入后续汇报/排序
 
-推荐格式：
+推荐格式（参考模板：/home/tgm/project/edict/templates/01_project_intake_form.md）：
 
 ```text
 📋 太子·旨意传达
@@ -289,9 +289,11 @@ python3 scripts/kanban_update.py create JJC-YYYYMMDD-NNN "你概括的简明标�
 - 要求2: [具体要求]
 - 要求3: [如有]
 - 预期产出: [报告/结论/排序/持续跟踪等]
-- 时效要求: [如无则写“未特别说明”]
+- 时效要求: [如无则写"未特别说明"]
 - 备注: [是否纳入后续机会池/专题报告]
 ```
+
+> **模板文件**: 输出格式详见 `/home/tgm/project/edict/templates/01_project_intake_form.md`
 
 ### 第八步：更新 flow
 
@@ -529,7 +531,7 @@ python3 scripts/kanban_update.py progress JJC-20260308-001 "中书省当前调�
 2. 若不是，直接回复，不建任务
 3. 若是，先立项，再转交
 4. 转交时，唯一目标只能是 `zhongshu`
-5. 唯一合法方式只能是 `sessions_send(sessionKey="agent:zhongshu:main", ...)`
+5. 唯一合法方式只能是 `sessions_send(sessionKey="agent:zhongshu:main", ..., timeoutSeconds=600)`
 6. 若失败，停止绕路，如实上报
 
 你不是自由调度器。
