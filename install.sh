@@ -92,7 +92,7 @@ backup_existing() {
 create_workspaces() {
   info "创建 Agent Workspace..."
   
-  AGENTS=(danei taizi zhongshu menxia shangshu hubu libu bingbu xingbu gongbu libu_hr zaochao yushitai)
+  AGENTS=(danei taizi zhongshu menxia shangshu hubu libu bingbu xingbu gongbu libu_hr zaochao yushitai huangchengsi fagaiwei)
   for agent in "${AGENTS[@]}"; do
     ws="$OC_HOME/workspace-$agent"
     mkdir -p "$ws/skills"
@@ -146,6 +146,8 @@ create_workspaces() {
 | 刑部 | 执行监督与偏差归因 |
 | 工部 | 技术统计与回测 |
 | 御史台 | 独立监察与成长 |
+| 皇城司 | 资讯中台与议题入池 |
+| 发改委 | 长期逻辑与行业景气 |
 
 ## Session Key 格式（必须使用！）
 
@@ -162,6 +164,8 @@ create_workspaces() {
 | 工部 | `agent:gongbu:main` |
 | 刑部 | `agent:xingbu:main` |
 | 御史台 | `agent:yushitai:main` |
+| 皇城司 | `agent:huangchengsi:main` |
+| 发改委 | `agent:fagaiwei:main` |
 | 早朝 | `agent:zaochao:main` |
 
 > ⚠️ **禁止使用中文名称！**
@@ -190,15 +194,17 @@ AGENTS = [
   {"id": "taizi",    "subagents": {"allowAgents": ["zhongshu"]}},
   {"id": "zhongshu", "subagents": {"allowAgents": ["menxia", "shangshu"]}},
   {"id": "menxia",   "subagents": {"allowAgents": ["shangshu", "zhongshu"]}},
-  {"id": "shangshu", "subagents": {"allowAgents": ["zhongshu", "menxia", "hubu", "libu", "bingbu", "xingbu", "gongbu", "libu_hr", "yushitai", "zaochao"]}},
+  {"id": "shangshu", "subagents": {"allowAgents": ["zhongshu", "menxia", "hubu", "libu", "bingbu", "xingbu", "gongbu", "libu_hr", "yushitai", "zaochao", "huangchengsi", "fagaiwei"]}},
   {"id": "hubu",     "subagents": {"allowAgents": ["shangshu"]}},
   {"id": "libu",     "subagents": {"allowAgents": ["shangshu"]}},
   {"id": "libu_hr",  "subagents": {"allowAgents": ["shangshu"]}},
   {"id": "bingbu",   "subagents": {"allowAgents": ["shangshu"]}},
   {"id": "xingbu",   "subagents": {"allowAgents": ["shangshu"]}},
   {"id": "gongbu",   "subagents": {"allowAgents": ["shangshu"]}},
-  {"id": "zaochao",  "subagents": {"allowAgents": []}},
-  {"id": "yushitai", "subagents": {"allowAgents": []}},
+  {"id": "zaochao",  "subagents": {"allowAgents": ["shangshu"]}},
+  {"id": "yushitai", "subagents": {"allowAgents": ["shangshu"]}},
+  {"id": "huangchengsi", "subagents": {"allowAgents": ["shangshu"]}},
+  {"id": "fagaiwei", "subagents": {"allowAgents": ["shangshu"]}},
 ]
 
 agents_cfg = cfg.setdefault('agents', {})

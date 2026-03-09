@@ -27,7 +27,10 @@ ID_LABEL = {
     'xingbu':   {'label': '刑部',   'role': '刑部尚书', 'duty': '合规/审计/红线',      'emoji': '⚖️'},
     'gongbu':   {'label': '工部',   'role': '工部尚书', 'duty': '工程交付与自动化',    'emoji': '🔧'},
     'libu_hr':  {'label': '吏部',   'role': '吏部尚书', 'duty': '人事/培训/Agent管理',  'emoji': '👔'},
-    'zaochao':  {'label': '钦天监', 'role': '朝报官',   'duty': '每日新闻采集与简报',  'emoji': '📰'},
+    'zaochao':  {'label': '早朝官', 'role': '早朝官',   'duty': '制度节律与会议节点',  'emoji': '🌅'},
+    'yushitai': {'label': '御史台', 'role': '御史中丞', 'duty': '独立监察与成长反馈', 'emoji': '⚡'},
+    'huangchengsi': {'label': '皇城司', 'role': '皇城司使', 'duty': '资讯中台与议题入池', 'emoji': '🏯'},
+    'fagaiwei': {'label': '发改委', 'role': '发改委主任', 'duty': '长期逻辑与行业景气', 'emoji': '📊'},
 }
 
 KNOWN_MODELS = [
@@ -114,13 +117,19 @@ def main():
     # 补充不在 openclaw.json agents list 中的 agent（兼容旧版 main）
     EXTRA_AGENTS = {
         'danei':   {'model': default_model, 'workspace': str(pathlib.Path.home() / '.openclaw/workspace-danei'),
-                    'allowAgents': [taizi]},
+                    'allowAgents': ["taizi"]},
         'taizi':   {'model': default_model, 'workspace': str(pathlib.Path.home() / '.openclaw/workspace-taizi'),
                     'allowAgents': ['zhongshu']},
         'main':    {'model': default_model, 'workspace': str(pathlib.Path.home() / '.openclaw/workspace-main'),
                     'allowAgents': ['zhongshu','menxia','shangshu','hubu','libu','bingbu','xingbu','gongbu','libu_hr']},
         'zaochao': {'model': default_model, 'workspace': str(pathlib.Path.home() / '.openclaw/workspace-zaochao'),
-                    'allowAgents': []},
+                    'allowAgents': ['shangshu']},
+        'yushitai': {'model': default_model, 'workspace': str(pathlib.Path.home() / '.openclaw/workspace-yushitai'),
+                    'allowAgents': ['shangshu']},
+        'huangchengsi': {'model': default_model, 'workspace': str(pathlib.Path.home() / '.openclaw/workspace-huangchengsi'),
+                    'allowAgents': ['shangshu']},
+        'fagaiwei': {'model': default_model, 'workspace': str(pathlib.Path.home() / '.openclaw/workspace-fagaiwei'),
+                    'allowAgents': ['shangshu']},
         'libu_hr': {'model': default_model, 'workspace': str(pathlib.Path.home() / '.openclaw/workspace-libu_hr'),
                     'allowAgents': ['shangshu']},
     }
@@ -169,6 +178,9 @@ _SOUL_DEPLOY_MAP = {
     'gongbu': 'gongbu',
     'libu_hr': 'libu_hr',
     'zaochao': 'zaochao',
+    'yushitai': 'yushitai',
+    'huangchengsi': 'huangchengsi',
+    'fagaiwei': 'fagaiwei',
 }
 
 def sync_scripts_to_workspaces():

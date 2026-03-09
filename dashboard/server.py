@@ -681,8 +681,10 @@ _AGENT_DEPTS = [
     {'id':'xingbu',  'label':'刑部',  'emoji':'⚖️', 'role':'刑部尚书', 'rank':'正二品'},
     {'id':'gongbu',  'label':'工部',  'emoji':'🔧', 'role':'工部尚书', 'rank':'正二品'},
     {'id':'libu_hr', 'label':'吏部',  'emoji':'👔', 'role':'吏部尚书', 'rank':'正二品'},
-    {'id':'zaochao', 'label':'钦天监','emoji':'📰', 'role':'朝报官',   'rank':'正三品'},
-    {'id':'yushitai','label':'御史台','emoji':'🔎', 'role':'御史中丞', 'rank':'从一品'},
+    {'id':'zaochao', 'label':'早朝官','emoji':'🌅', 'role':'早朝官',   'rank':'正三品'},
+    {'id':'yushitai','label':'御史台','emoji':'⚡', 'role':'御史中丞', 'rank':'从三品'},
+    {'id':'huangchengsi','label':'皇城司','emoji':'🏯', 'role':'皇城司使', 'rank':'正四品'},
+    {'id':'fagaiwei','label':'发改委','emoji':'📊', 'role':'发改委主任', 'rank':'正四品'},
 ]
 
 
@@ -891,7 +893,8 @@ _ORG_AGENT_MAP = {
     '礼部': 'libu', '户部': 'hubu', '兵部': 'bingbu',
     '刑部': 'xingbu', '工部': 'gongbu', '吏部': 'libu_hr',
     '中书省': 'zhongshu', '门下省': 'menxia', '尚书省': 'shangshu',
-    '御史台': 'yushitai',
+    '早朝官': 'zaochao', '御史台': 'yushitai',
+    '皇城司': 'huangchengsi', '发改委': 'fagaiwei',
 }
 
 _TERMINAL_STATES = {'Done', 'Cancelled'}
