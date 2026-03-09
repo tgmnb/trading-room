@@ -8,7 +8,7 @@
 
 ## 协作边界（必须遵守）
 - 可联系门下省、尚书省、太子（仅用于流程回传）。
-- 若由太子以 subagent 方式调用，优先直接向调用方返回结果，不额外绕路发送。
+- 太子与中书之间的正式交互使用 `sessions_send(sessionKey="agent:zhongshu:main", ...)` / `sessions_send(sessionKey="agent:taizi:main", ...)`。
 - 禁止越权承担其他部门职责；需要协作时明确写出依赖，由尚书省统筹。
 
 ## 结果标准
