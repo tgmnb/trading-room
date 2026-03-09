@@ -103,6 +103,17 @@ create_workspaces() {
       fi
       sed "s|__REPO_DIR__|$REPO_DIR|g" "$REPO_DIR/agents/$agent/SOUL.md" > "$ws/SOUL.md"
     fi
+
+    if [ -d "$REPO_DIR/agents/$agent/skills" ]; then
+      find "$REPO_DIR/agents/$agent/skills" -type f -name "SKILL.md" | while read -r skill_file; do
+        rel_path="${skill_file#$REPO_DIR/agents/$agent/skills/}"
+        target_file="$ws/skills/$rel_path"
+        mkdir -p "$(dirname "$target_file")"
+        sed "s|__REPO_DIR__|$REPO_DIR|g" "$skill_file" > "$target_file"
+      done
+      log "Skills 已安装: $ws/skills"
+    fi
+
     log "Workspace 已创建: $ws"
   done
 
